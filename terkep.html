@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trans Europe Ultra - Térkép</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Leaflet Térkép CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    /* Nyelválasztó stílus */
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-left: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.25rem 0.5rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
+    .lang-switcher a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: bold;
+      padding: 0.2rem 0.4rem;
+      border-radius: 50px;
+      transition: all 0.2s;
+    }
+    .lang-switcher a.active, .lang-switcher a:hover {
+      background: #f59e0b;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <a href="index.html" class="logo">TRANS EUROPE <span>ULTRA</span></a>
+      
+      <div style="display: flex; align-items: center; flex-wrap: wrap;">
+        <ul class="nav-links">
+          <li><a href="index.html">Főoldal</a></li>
+          <li><a href="terkep.html" class="active">Térkép</a></li>
+          <li><a href="szakaszok.html">Szakaszok</a></li>
+          <li><a href="versenykiiras.html">Versenykiírás</a></li>
+          <li><a href="szabalyzat.html">Szabályzat</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="eredmenyek.html">Eredmények</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+
+        <!-- NYELVÁLASZTÓ GOMB -->
+        <div class="lang-switcher">
+          <a href="#" class="active" title="Magyar">🇭🇺 HU</a>
+          <a href="#" title="English">🇬🇧 EN</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section class="hero">
+      <span class="badge">Interaktív útvonal</span>
+      <h1>A teljes nyomvonal térképe</h1>
+      <p>5.760 km hosszúság és 77.750 m szintemelkedés Portótól Tihanyig. Kattints a térképen lévő pontokra a részletekért! A teljes útvonal részletes, letölthető GPX fájlját a szervezők a sikeres nevezés és regisztráció után küldik el a résztvevőknek.</p>
+    </section>
+
+    <!-- TÉRKÉP KONTÉNER -->
+    <div id="map-container" style="position: relative;">
+      <div id="map" style="height: 650px; width: 100%; border-radius: 14px; border: 1px solid var(--border-color); background-color: #151c2c;"></div>
+    </div>
+
+    <!-- ÚTVONAL ÖSSZEFOGLALÓ -->
+    <div class="card" style="margin-top: 2rem;">
+      <h2>🗺️ Útvonal összefoglaló</h2>
+      <p><strong>Rajt:</strong> Porto, Portugália (Farol de Felgueiras)</p>
+      <p><strong>Cél:</strong> Tihany, Magyarország (Tihanyi Bencés Apátság)</p>
+      <p><strong>Érintett országok (12):</strong> Portugália, Spanyolország, Andorra, Franciaország, Svájc, Olaszország, Ausztria, Németország, Csehország, Lengyelország, Szlovákia, Magyarország.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2027–2030 Trans Europe Ultra. Minden jog fenntartva.</p>
+  </footer>
+
+  <!-- Leaflet Térkép JS Script -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      try {
+        const map = L.map('map').setView([46.5, 8.5], 5);
+
+        // Hivatalos, ingyenes, API-kulcsot nem igénylő alapréteg
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          maxZoom: 19
+        }).addTo(map);
+
+        // A 12 ellenőrzőpont és a rajt/cél koordinátái
+        const checkPoints = [
+          { lat: 41.1496, lng: -8.6110, title: "<b>Start: Porto, Portugália</b><br>Farol de Felgueiras (0 m)" },
+          { lat: 40.3219, lng: -7.6128, title: "<b>CP1: Torre, Portugália</b> (1.993 m)" },
+          { lat: 37.0558, lng: -3.3592, title: "<b>CP2: Granada, Spanyolország</b> - Pico de Veleta (3.300 m)" },
+          { lat: 42.5408, lng: 1.7186, title: "<b>CP3: Envalira, Andorra</b> - Port d'Envalira (2.408 m)" },
+          { lat: 44.3208, lng: 6.8072, title: "<b>CP4: Jausiers, Franciaország</b> - Cime de la Bonette (2.802 m)" },
+          { lat: 46.5419, lng: 10.4331, title: "<b>CP5: Val Müstair, Svájc</b> - Umbrail-hágó (2.501 m)" },
+          { lat: 46.5294, lng: 10.4531, title: "<b>CP6: Stelvio, Olaszország</b> - Passo dello Stelvio (2.757 m)" },
+          { lat: 46.9242, lng: 10.9631, title: "<b>CP7: Sölden, Ausztria</b> - Ötztaler Gletscherstraße (2.830 m)" },
+          { lat: 47.6108, lng: 13.0808, title: "<b>CP8: Berchtesgaden, Németország</b> - Roßfeld (1.540 m)" },
+          { lat: 50.0831, lng: 17.2308, title: "<b>CP9: Jeseník, Csehország</b> - Praděd (1.491 m)" },
+          { lat: 50.7608, lng: 15.6567, title: "<b>CP10: Karpacz, Lengyelország</b> - Karkonoska (1.198 m)" },
+          { lat: 48.8831, lng: 20.1389, title: "<b>CP11: Brezno, Szlovákia</b> - Kráľova hoľa (1.946 m)" },
+          { lat: 47.8728, lng: 20.0081, title: "<b>CP12: Mátraháza, Magyarország</b> - Kékestető (1.014 m)" },
+          { lat: 46.9142, lng: 17.8894, title: "<b>Cél: Tihany, Magyarország</b><br>Tihanyi Bencés Apátság" }
+        ];
+
+        const latLngs = [];
+        checkPoints.forEach(cp => {
+          const marker = L.marker([cp.lat, cp.lng]).addTo(map);
+          marker.bindPopup(cp.title);
+          latLngs.push([cp.lat, cp.lng]);
+        });
+
+        // Sárga nyomvonal
+        const polyline = L.polyline(latLngs, {
+          color: '#f59e0b',
+          weight: 4,
+          opacity: 0.85
+        }).addTo(map);
+
+        setTimeout(() => {
+          map.invalidateSize();
+          map.fitBounds(polyline.getBounds(), { padding: [40, 40] });
+        }, 200);
+
+      } catch (e) {
+        document.getElementById('map').innerHTML = '<p style="padding:2rem; text-align:center; color:#f59e0b;">A térkép betöltéséhez aktív internetkapcsolat szükséges.</p>';
+      }
+    });
+  </script>
+</body>
+</html>

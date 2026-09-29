@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trans Europe Ultra - Főoldal</title>
+  <!-- Modern Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+      font-size: 1rem; /* Egységes alap szövegtest méret */
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    /* Egységes szövegtest és címsor méretek */
+    p, li, .panel p {
+      font-size: 1rem;
+      text-align: justify;
+      text-justify: inter-word;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 968px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem 1rem;
+        padding: 0;
+      }
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.25rem 0.5rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .lang-switcher a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: bold;
+      padding: 0.2rem 0.4rem;
+      border-radius: 50px;
+      transition: all 0.2s;
+    }
+    .lang-switcher a.active, .lang-switcher a:hover {
+      background: #f59e0b;
+      color: #0f172a;
+    }
+
+    .nav-links a.highlight-green {
+      color: #4ade80 !important;
+      font-weight: bold;
+    }
+    .nav-links a.highlight-green:hover {
+      color: #86efac !important;
+    }
+
+    /* Pirosas kiemelés a regisztráció gombhoz */
+    .nav-links a.highlight-red {
+      color: #ef4444 !important;
+      font-weight: bold;
+    }
+    .nav-links a.highlight-red:hover {
+      color: #f87171 !important;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, #ffffff, #f8fafc);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #ffffff;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Képdoboz szöveg nélkül, teljes magasságú kitöltéssel */
+    .bento-image-card {
+      padding: 0 !important;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #1e293b !important;
+    }
+    .image-wrapper {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      overflow: hidden;
+    }
+    .bento-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .bento-image-card:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Középre rendezett sárga kiemelt szövegdoboz */
+    .highlight-box {
+      background: #fffbeb;
+      border: 2px solid #fcd34d;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 12px;
+      text-align: center !important;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #b45309;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
+      line-height: 1.5;
+    }
+
+    /* Külső hivatkozás stílusa a szövegen belül */
+    .content-link {
+      color: #d97706;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .content-link:hover {
+      color: #b45309;
+      text-decoration: underline;
+    }
+
+    /* Megnövelt, szellősebb lábléc */
+    footer {
+      padding: 3.5rem 1rem;
+      margin-top: 5rem;
+      background-color: #0f172a;
+      color: #94a3b8;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <div style="display: flex; flex-direction: column;">
+        <a href="index.html" class="logo">TRANS EUROPE <span>ULTRA</span></a>
+        <span style="font-size: 0.75rem; color: #f59e0b; font-weight: 600; letter-spacing: 1px; margin-top: -2px;">ORA ET LABORA</span>
+      </div>
+      
+      <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <ul class="nav-links" style="list-style: none; display: flex; gap: 1.2rem; align-items: center; margin: 0;">
+          <li><a href="index.html" class="active">FŐOLDAL</a></li>
+          <li><a href="tortenelem.html">TÖRTÉNELEM</a></li>
+          <li><a href="foverseny.html" class="highlight-green">FŐVERSENY</a></li>
+          <li><a href="bikepacking-200.html" class="highlight-green">BIKEPACKING-200</a></li>
+          <li><a href="szakaszok.html">SZAKASZOK</a></li>
+          <li><a href="regisztracio.html" class="highlight-red">REGISZTRÁCIÓ</a></li>
+          <li><a href="szabalyzat.html">SZABÁLYZAT</a></li>
+          <li><a href="eredmenyek.html">EREDMÉNYEK</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="kontakt.html">KONTAKT</a></li>
+        </ul>
+
+        <div class="lang-switcher">
+          <a href="#" class="active" title="Magyar">🇭🇺 HU</a>
+          <a href="#" title="English">🇬🇧 EN</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- BENTO GRID KEZDETE -->
+  <div class="bento-container">
+
+    <!-- 1. HERO / FŐ CÍM (Széles doboz: 2 oszlop) -->
+    <div class="bento-card col-span-2 hero-card" style="text-align: center; padding: 2.5rem 2rem;">
+      <span class="hero-badge">12 ORSZÁG | 5 760 KM | 77 750 M SZINT</span>
+      
+      <h1>TRANS EUROPE ULTRA</h1>
+      
+      <div style="margin-bottom: 1.25rem;">
+        <span style="font-size: 1.1rem; font-weight: 800; color: #d97706; letter-spacing: 2px;">PART I.</span>
+        <span style="font-weight: 600; color: #64748b; font-size: 0.95rem; margin-left: 0.5rem;">(2027 – 2030)</span>
+      </div>
+
+      <p style="max-width: 750px; margin: 0 auto;">
+        A Trans Europe Ultra az európai kontinens legkeményebb, határokon átívelő, önellátó kerékpáros ultraversenye, amely az Atlanti-óceán partján fekvő Portótól (PRT) köti össze a mezőnyt a festői magyarországi Tihannyal (HUN). A résztvevők 12 országon keresztül, embert próbáló hegyvidékeken és történelmi régiókon át küzdenek meg az elemekkel és önmaguk határaival egy egyedülálló nemzetközi mezőnyben.
+      </p>
+    </div>
+
+    <!-- 2. KÉP DOBOZ (1 oszlop) - Szöveg nélkül -->
+    <div class="bento-card bento-image-card">
+      <div class="image-wrapper">
+        <img src="placeholder-hero.jpg" alt="Trans Europe Ultra - Kerékpáros kihívás">
+      </div>
+    </div>
+
+    <!-- 3. ELŐZMÉNYEK ÉS AZ ÖTLET (2 oszlop) -->
+    <div class="bento-card col-span-2">
+      <h2>Előzmények és az ötlet</h2>
+      <p>A <a href="https://transcanadabikerace.com/en/" target="_blank" class="content-link">Trans-Canada</a> Ultra a világ legnehezebb és leghosszabb önellátó kerékpáros ultraversenye. A mezőny a kanadai Yukon tartománybeli Whitehorse-ból indul, és egy emberpróbáló, 12.790 kilométeres útvonalat teljesítve éri el a célt: Újfundlandon, St. John’s közelében a Cape Spear világítótornyot.</p>
+      <p>Ezt a kihívást folytatja a TRANS EUROPE ULTRA a portugál felfedezők nyomdokain: a portói világítótoronytól indulva, 12 ország legmagasabb szakaszain át vezet az út a magyarországi Tihanyi Bencés Apátságig.</p>
+      
+      <!-- Középre rendezett sárga kiemelt szövegdoboz -->
+      <div class="highlight-box">
+        Azt a célt tűztük ki magunk elé, hogy az európai 12 országát összekötjük, és elindítunk egy északi földkerülő önellátó versenyt...
+      </div>
+
+      <button class="accordion-btn">Történelmi sorsfordulók és bencés örökség</button>
+      <div class="panel">
+        <p>Amikor 1504-ben a portugál tengerészek feltérképezték Újfundland partjait, a mai St. John’s vidékét Terra de Bacalhaos néven jegyezték fel. Az utazás szellemi ívét a bencés örökség keretezi: Portóban a történelmi São Bento kolostorok őrzik a rend atlanti-óceáni jelenlétét, míg a célvonal a Tihanyi Bencés Apátságnál várja a célba érkezőket („Ora et labora”).</p>
+      </div>
+    </div>
+
+    <!-- 4. HELYSZÍNI RAJT ÉS CÉL (1 oszlop) -->
+    <div class="bento-card">
+      <h2>Rajt és Cél</h2>
+      <p><strong>Rajt:</strong><br>Porto (PRT), Mosteiro de São Bento da Vitória & Farol de Felgueiras</p>
+      <p><strong>Cél:</strong><br>Tihany (HUN), Bencés Apátság</p>
+      
+      <p style="margin-top: 1rem;"><strong>Főbb adatok:</strong></p>
+      <ul style="padding-left: 1.2rem; margin: 0.5rem 0; text-align: left;">
+        <li><strong>Távolság:</strong> 5 760 km</li>
+        <li><strong>Szintkülönbség:</strong> 77 750 m szint</li>
+        <li><strong>Szintidő:</strong> 40 nap</li>
+      </ul>
+
+      <p style="margin-top: 1rem;"><strong>Időpontok:</strong></p>
+      <ul style="padding-left: 1.2rem; margin: 0.5rem 0; text-align: left;">
+        <li><strong>2027:</strong> Pioneer Edition</li>
+        <li><strong>2028:</strong> Jún. 25. (vasárnap) 6:00</li>
+        <li><strong>2029:</strong> Júl. 1. (vasárnap) 6:00</li>
+        <li><strong>2030:</strong> Jún. 30. (vasárnap) 6:00</li>
+      </ul>
+      
+      <button class="accordion-btn" style="margin-top: 1rem;">A rajt szimbolikája</button>
+      <div class="panel">
+        <p>A rajt a nyári napforduló és Szent János napja köré fonódik, amikor Porto lakói a Douro folyón ünneplnek.</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- BENTO GRID VÉGE -->
+
+  <footer>
+    <p>&copy; 2027–2030 Trans Europe Ultra. Minden jog fenntartva.</p>
+  </footer>
+
+  <script>
+    var acc = document.getElementsByClassName("accordion-btn");
+    for (var i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
